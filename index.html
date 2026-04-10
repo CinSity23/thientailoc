@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thiên Tài Lộc – Phụ Kiện Nhôm Kính TP.HCM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D3B5E;
+      --navy-dark: #071F33;
+      --teal: #1D9E75;
+      --teal-light: #5DCAA5;
+      --mint: #9FE1CB;
+      --white: #ffffff;
+      --off-white: #F4F7F6;
+      --gray: #8A9BA8;
+      --text: #1a2a35;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Be Vietnam Pro', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--off-white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(7, 31, 51, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(93, 202, 165, 0.15);
+      transition: background 0.3s;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: var(--navy);
+      border: 2px solid var(--teal-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .logo-icon svg { width: 24px; height: 24px; }
+
+    .logo-text { line-height: 1; }
+    .logo-text span:first-child {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    .logo-text span:last-child {
+      display: block;
+      font-size: 9px;
+      color: var(--teal-light);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal-light); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--teal-light) !important; color: var(--navy-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy-dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(29, 158, 117, 0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* animated grid background */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(93,202,165,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(93,202,165,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-left { position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(29,158,117,0.15);
+      border: 1px solid rgba(93,202,165,0.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+    .hero-badge span { color: var(--teal-light); font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-light); animation: pulse 2s infinite; }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 90px);
+      line-height: 0.95;
+      color: var(--white);
+      letter-spacing: 1px;
+      animation: fadeUp 0.8s 0.1s ease forwards;
+      opacity: 0;
+    }
+    .hero h1 .accent { color: var(--teal-light); }
+
+    .hero-sub {
+      margin-top: 24px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 420px;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; margin-top: 40px;
+      animation: fadeUp 0.8s 0.3s ease forwards;
+      opacity: 0;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600; font-size: 14px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--teal-light); color: var(--navy-dark); transform: translateY(-2px); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 500; font-size: 14px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--teal-light); color: var(--teal-light); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 56px;
+      animation: fadeUp 0.8s 0.4s ease forwards;
+      opacity: 0;
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--teal-light); }
+    .stat-label { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+    /* Hero right — visual */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .hero-visual {
+      width: 420px; height: 420px;
+      position: relative;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-visual-ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(93,202,165,0.2);
+      animation: spinSlow 20s linear infinite;
+    }
+    .hero-visual-ring::before {
+      content: '';
+      position: absolute; top: -4px; left: 50%;
+      width: 8px; height: 8px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .hero-visual-ring2 {
+      position: absolute; inset: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(93,202,165,0.1);
+      animation: spinSlow 14s linear infinite reverse;
+    }
+
+    .hero-visual-center {
+      position: absolute; inset: 80px;
+      background: rgba(13,59,94,0.8);
+      border: 1px solid rgba(93,202,165,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-icon-large svg { width: 100px; height: 100px; }
+
+    /* floating product cards */
+    .float-card {
+      position: absolute;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(93,202,165,0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .float-card .fc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal-light); flex-shrink: 0; }
+    .float-card .fc-text { font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 500; }
+    .float-card-1 { top: 30px; right: -20px; animation: floatUp 4s ease-in-out infinite; }
+    .float-card-2 { bottom: 60px; left: -30px; animation: floatUp 4s 1.5s ease-in-out infinite; }
+    .float-card-3 { top: 140px; left: -40px; animation: floatUp 4s 0.8s ease-in-out infinite; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--navy);
+      padding: 20px 48px;
+      display: flex; align-items: center; justify-content: center; gap: 48px;
+      border-bottom: 1px solid rgba(93,202,165,0.1);
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.6);
+      font-size: 13px; font-weight: 500;
+    }
+    .trust-item svg { color: var(--teal-light); }
+    .trust-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.1); }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 96px 48px; }
+    .section-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--navy-dark);
+      line-height: 1;
+      letter-spacing: 0.5px;
+    }
+    .section-title .accent { color: var(--teal); }
+    .section-sub {
+      font-size: 15px; color: var(--gray);
+      margin-top: 12px; max-width: 480px; line-height: 1.7;
+    }
+
+    /* ── CATEGORIES ── */
+    #san-pham { background: var(--off-white); }
+    .cat-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .cat-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px 24px;
+      border: 1px solid rgba(0,0,0,0.06);
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+    .cat-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .cat-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(13,59,94,0.1); border-color: rgba(29,158,117,0.2); }
+    .cat-card:hover::before { transform: scaleX(1); }
+
+    .cat-icon {
+      width: 52px; height: 52px;
+      background: rgba(29,158,117,0.08);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      transition: background 0.25s;
+    }
+    .cat-card:hover .cat-icon { background: rgba(29,158,117,0.15); }
+    .cat-icon svg { width: 26px; height: 26px; color: var(--teal); }
+
+    .cat-name {
+      font-weight: 600; font-size: 15px;
+      color: var(--navy-dark);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .cat-count {
+      font-size: 12px; color: var(--gray);
+    }
+    .cat-arrow {
+      position: absolute; bottom: 20px; right: 20px;
+      width: 28px; height: 28px;
+      background: rgba(29,158,117,0.08);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .cat-card:hover .cat-arrow { background: var(--teal); transform: translateX(2px); }
+    .cat-card:hover .cat-arrow svg { color: white; }
+    .cat-arrow svg { width: 14px; height: 14px; color: var(--teal); }
+
+    /* featured large card */
+    .cat-card-large {
+      grid-column: span 2;
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: var(--white);
+    }
+    .cat-card-large .cat-name { color: var(--white); }
+    .cat-card-large .cat-count { color: rgba(255,255,255,0.5); }
+    .cat-card-large .cat-icon { background: rgba(93,202,165,0.15); }
+    .cat-card-large .cat-icon svg { color: var(--teal-light); }
+    .cat-card-large .cat-arrow { background: rgba(93,202,165,0.15); }
+    .cat-card-large:hover .cat-arrow { background: var(--teal-light); }
+    .cat-card-large:hover .cat-arrow svg { color: var(--navy-dark); }
+    .cat-card-large::before { background: linear-gradient(90deg, var(--teal-light), var(--mint)); }
+    .cat-card-large .cat-badge {
+      position: absolute; top: 20px; right: 20px;
+      background: rgba(93,202,165,0.2);
+      border: 1px solid rgba(93,202,165,0.3);
+      color: var(--teal-light);
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      padding: 4px 12px; border-radius: 100px; text-transform: uppercase;
+    }
+
+    /* ── WHY US ── */
+    #gioi-thieu { background: var(--navy-dark); }
+    #gioi-thieu .section-title { color: var(--white); }
+    #gioi-thieu .section-sub { color: rgba(255,255,255,0.5); }
+
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; margin-top: 64px;
+    }
+
+    .why-items { display: flex; flex-direction: column; gap: 32px; }
+    .why-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,202,165,0.1);
+      border-radius: 12px;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .why-item:hover { background: rgba(93,202,165,0.06); border-color: rgba(93,202,165,0.25); }
+    .why-num {
+      font-family: var(--font-display);
+      font-size: 36px; color: var(--teal-light);
+      line-height: 1; min-width: 36px;
+    }
+    .why-content h3 { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .why-content p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+    /* right side visual */
+    .why-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .why-metric {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(93,202,165,0.12);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: transform 0.2s;
+    }
+    .why-metric:hover { transform: translateY(-4px); }
+    .why-metric:first-child { grid-column: span 2; background: rgba(29,158,117,0.12); border-color: rgba(29,158,117,0.3); }
+    .why-metric-num {
+      font-family: var(--font-display);
+      font-size: 52px; color: var(--white); line-height: 1;
+    }
+    .why-metric-num span { color: var(--teal-light); }
+    .why-metric-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+
+    /* ── CONTACT ── */
+    #lien-he {
+      background: var(--off-white);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; margin-top: 64px; align-items: start;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px 24px;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .contact-item:hover { border-color: rgba(29,158,117,0.3); transform: translateX(4px); }
+    .contact-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(29,158,117,0.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 20px; height: 20px; color: var(--teal); }
+    .contact-info h4 { font-size: 13px; color: var(--gray); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-info p { font-size: 15px; color: var(--navy-dark); font-weight: 500; margin-top: 4px; line-height: 1.5; }
+
+    .contact-ctas { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .cta-zalo {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #0068FF; color: var(--white);
+      padding: 16px; border-radius: 10px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cta-zalo:hover { opacity: 0.9; transform: translateY(-2px); }
+    .cta-phone {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--teal); color: var(--white);
+      padding: 16px; border-radius: 10px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cta-phone:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* map placeholder */
+    .map-box {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      height: 360px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+      color: var(--gray);
+    }
+    .map-box svg { width: 40px; height: 40px; color: var(--teal-light); }
+    .map-box p { font-size: 14px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-dark);
+      padding: 48px 48px 24px;
+      border-top: 1px solid rgba(93,202,165,0.1);
+    }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 24px;
+    }
+    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 12px; max-width: 280px; line-height: 1.6; }
+    .footer-hours h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--teal-light); margin-bottom: 10px; }
+    .footer-hours p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-credits { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 64px 20px; }
+      .hero { padding: 100px 20px 64px; }
+      .trust-bar { flex-wrap: wrap; gap: 16px; padding: 16px 20px; }
+      .trust-divider { display: none; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .cat-card-large { grid-column: span 1; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; gap: 32px; }
+      .hero-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="3" rx="1" fill="#5DCAA5"/>
+          <rect x="3" y="18" width="18" height="3" rx="1" fill="#9FE1CB" opacity="0.7"/>
+          <rect x="3" y="3" width="3" height="18" rx="1" fill="#9FE1CB" opacity="0.7"/>
+          <rect x="18" y="3" width="3" height="18" rx="1" fill="#9FE1CB" opacity="0.7"/>
+          <rect x="10.5" y="6" width="3" height="12" rx="1" fill="#5DCAA5"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span>Thiên Tài Lộc</span>
+        <span>Phụ Kiện Nhôm Kính</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#san-pham">Sản phẩm</a></li>
+      <li><a href="#gioi-thieu">Về chúng tôi</a></li>
+      <li><a href="#lien-he" class="nav-cta">Liên hệ ngay</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>Nhà phân phối chính hãng · TP.HCM</span>
+      </div>
+
+      <h1>PHỤ KIỆN<br/><span class="accent">NHÔM KÍNH</span><br/>CHẤT LƯỢNG CAO</h1>
+
+      <p class="hero-sub">Chuyên cung cấp phụ kiện nhôm kính, cửa kính, phòng tắm kính và dụng cụ thi công chính hãng tại TP. Hồ Chí Minh.</p>
+
+      <div class="hero-actions">
+        <a href="#san-pham" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Xem sản phẩm
+        </a>
+        <a href="#lien-he" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 9.8 19.79 19.79 0 011 1.18 2 2 0 013 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Gọi ngay
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-label">Năm kinh nghiệm</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2<span>K+</span></div>
+          <div class="stat-label">Sản phẩm</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Chi nhánh HCM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero visual -->
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hero-visual-ring"></div>
+        <div class="hero-visual-ring2"></div>
+        <div class="hero-visual-center">
+          <div class="hero-icon-large">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="80" height="10" rx="3" fill="#5DCAA5"/>
+              <rect x="10" y="80" width="80" height="10" rx="3" fill="#9FE1CB" opacity="0.6"/>
+              <rect x="10" y="10" width="10" height="80" rx="3" fill="#9FE1CB" opacity="0.6"/>
+              <rect x="80" y="10" width="10" height="80" rx="3" fill="#9FE1CB" opacity="0.6"/>
+              <rect x="45" y="20" width="10" height="60" rx="3" fill="#5DCAA5" opacity="0.8"/>
+              <rect x="20" y="45" width="60" height="10" rx="3" fill="#5DCAA5" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="float-card float-card-1">
+          <div class="fc-dot"></div>
+          <div class="fc-text">Phụ kiện phòng tắm kính</div>
+        </div>
+        <div class="float-card float-card-2">
+          <div class="fc-dot"></div>
+          <div class="fc-text">Giao hàng trong 3 ngày</div>
+        </div>
+        <div class="float-card float-card-3">
+          <div class="fc-dot"></div>
+          <div class="fc-text">Sản phẩm chính hãng 100%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      Sản phẩm chính hãng 100%
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      Giao hàng 3 ngày làm việc
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Bảo hành chính sách rõ ràng
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      2 chi nhánh tại TP.HCM
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="san-pham">
+    <div class="cat-header reveal">
+      <div>
+        <span class="section-label">Danh mục sản phẩm</span>
+        <h2 class="section-title">CHÚNG TÔI<br/><span class="accent">CUNG CẤP</span></h2>
+        <p class="section-sub">Đa dạng phụ kiện nhôm kính, thiết bị và dụng cụ thi công chất lượng cao.</p>
+      </div>
+      <a href="#lien-he" class="btn-primary" style="flex-shrink:0;">Hỏi báo giá →</a>
+    </div>
+
+    <div class="cat-grid">
+      <a href="#lien-he" class="cat-card cat-card-large reveal">
+        <div class="cat-badge">Phổ biến nhất</div>
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="cat-name">Phụ Kiện Phòng Tắm Kính</div>
+        <div class="cat-count">Cửa lùa · Cửa mở · Tay nắm · Ron Inox</div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#lien-he" class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <div class="cat-name">Phụ Kiện Ngành Kính</div>
+        <div class="cat-count">Bản lề sàn · Lan can · Khóa kính</div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#lien-he" class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="cat-name">Khóa Cửa Các Loại</div>
+        <div class="cat-count">Khóa cổng · Tay gạt · Khóa tròn</div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#lien-he" class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="cat-name">Phụ Kiện Nhôm Xingfa</div>
+        <div class="cat-count">Kinlong · Draho · Huy Hoàng</div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#lien-he" class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="cat-name">Dụng Cụ & Đồ Nghề</div>
+        <div class="cat-count">Máy cắt · Khoan · Laser</div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a href="#lien-he" class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <div class="cat-name">Ke & Keo Các Loại</div>
+        <div class="cat-count">Keo · Ke nhôm · Ke nhựa</div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="gioi-thieu">
+    <div class="reveal">
+      <span class="section-label" style="color:var(--teal-light);">Về chúng tôi</span>
+      <h2 class="section-title">TẠI SAO CHỌN<br/><span class="accent">THIÊN TÀI LỘC?</span></h2>
+      <p class="section-sub">Hơn 10 năm phục vụ khách hàng tại TP.HCM — uy tín được xây dựng từ chất lượng thực sự.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-items">
+        <div class="why-item reveal">
+          <div class="why-num">01</div>
+          <div class="why-content">
+            <h3>Sản phẩm chính hãng 100%</h3>
+            <p>Tất cả sản phẩm đều có xuất xứ rõ ràng, hàng chính hãng từ các thương hiệu uy tín như Kinlong, Draho, Hafele.</p>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-1">
+          <div class="why-num">02</div>
+          <div class="why-content">
+            <h3>Giao hàng nhanh toàn TP.HCM</h3>
+            <p>Giao trong 3 ngày làm việc, có xe giao hàng riêng, hỗ trợ xuất hóa đơn GTGT đầy đủ.</p>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-2">
+          <div class="why-num">03</div>
+          <div class="why-content">
+            <h3>Hỗ trợ tư vấn kỹ thuật</h3>
+            <p>Đội ngũ có kinh nghiệm sẵn sàng tư vấn lựa chọn phụ kiện phù hợp với từng công trình cụ thể.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-visual reveal">
+        <div class="why-metric">
+          <div class="why-metric-num">10<span>+</span></div>
+          <div class="why-metric-label">Năm hoạt động trong ngành nhôm kính</div>
+        </div>
+        <div class="why-metric">
+          <div class="why-metric-num">2<span>K</span></div>
+          <div class="why-metric-label">Sản phẩm trong kho</div>
+        </div>
+        <div class="why-metric">
+          <div class="why-metric-num">2</div>
+          <div class="why-metric-label">Chi nhánh tại TP.HCM</div>
+        </div>
+        <div class="why-metric">
+          <div class="why-metric-num">3</div>
+          <div class="why-metric-label">Ngày giao hàng tối đa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="lien-he">
+    <div class="reveal">
+      <span class="section-label">Liên hệ</span>
+      <h2 class="section-title">ĐẶT HÀNG &<br/><span class="accent">LIÊN HỆ</span></h2>
+      <p class="section-sub">Zalo hoặc gọi điện trực tiếp — chúng tôi phản hồi nhanh trong giờ làm việc.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-items">
+          <div class="contact-item reveal">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-info">
+              <h4>Chi nhánh 1</h4>
+              <p>478 Tân Kỳ Tân Quý, P. Tân Quý, Q. Tân Phú, TP.HCM</p>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-info">
+              <h4>Chi nhánh 2</h4>
+              <p>106 Phạm Thị Nghỉ, Vĩnh Lộc A, Bình Chánh, TP.HCM</p>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 9.8 19.79 19.79 0 011 1.18 2 2 0 013 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contact-info">
+              <h4>Hotline</h4>
+              <p>0834 020 393 · 0934 020 393</p>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-3">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-info">
+              <h4>Giờ làm việc</h4>
+              <p>Thứ 2 – Thứ 7: 07:30 – 17:15<br/>Chủ nhật: 07:30 – 11:30</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-ctas reveal" style="margin-top: 28px;">
+          <a href="https://zalo.me/0834020393" class="cta-zalo" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            Nhắn Zalo ngay
+          </a>
+          <a href="tel:0834020393" class="cta-phone">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 9.8 19.79 19.79 0 011 1.18 2 2 0 013 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Gọi: 0834 020 393
+          </a>
+        </div>
+      </div>
+
+      <div class="map-box reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <p style="font-weight:500; color:var(--navy-dark);">Bản đồ sẽ được tích hợp</p>
+        <p>Google Maps — 2 chi nhánh tại TP.HCM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="logo" style="margin-bottom:12px;">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="3" rx="1" fill="#5DCAA5"/>
+              <rect x="3" y="18" width="18" height="3" rx="1" fill="#9FE1CB" opacity="0.7"/>
+              <rect x="3" y="3" width="3" height="18" rx="1" fill="#9FE1CB" opacity="0.7"/>
+              <rect x="18" y="3" width="3" height="18" rx="1" fill="#9FE1CB" opacity="0.7"/>
+              <rect x="10.5" y="6" width="3" height="12" rx="1" fill="#5DCAA5"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span>Thiên Tài Lộc</span>
+            <span>Phụ Kiện Nhôm Kính</span>
+          </div>
+        </div>
+        <p class="footer-tagline">Nhà phân phối phụ kiện nhôm kính uy tín tại TP.HCM — tận tâm, chất lượng, đúng hẹn.</p>
+      </div>
+      <div class="footer-hours">
+        <h4>Giờ làm việc</h4>
+        <p>Thứ 2 – Thứ 7: 07:30 – 17:15<br/>Chủ nhật: 07:30 – 11:30<br/>Email: phukienkinh93@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 Thiên Tài Lộc. All rights reserved.</span>
+      <span class="footer-credits">TP. Hồ Chí Minh, Việt Nam</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+
+    // Navbar scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.style.background = 'rgba(7, 31, 51, 0.98)';
+      } else {
+        nav.style.background = 'rgba(7, 31, 51, 0.95)';
+      }
+    });
+  </script>
+</body>
+</html>
